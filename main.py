@@ -22,6 +22,8 @@ def main() -> None:
         raise SystemExit(f"entry is {len(text)} characters, over the 200 limit")
     if "\n" in text or "\r" in text:
         raise SystemExit("entry must be a single line")
+    if sum(text.count(c) for c in ".!?") != 1:
+        raise SystemExit("entry must be exactly one sentence")
     if not text.strip():
         raise SystemExit("entry is only whitespace")
     os.makedirs("/output", exist_ok=True)
